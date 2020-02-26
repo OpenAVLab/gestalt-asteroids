@@ -11,4 +11,7 @@ const fakeUsers = [
 
 describe('UserList Component', () => {
   it('should render a User component for each user passed in', () => {
-    const userList =
+    const userList = shallow(<UserList users={fakeUsers} />)
+    expect(userList.find(User).length).to.equal(fakeUsers.length)
+  })
+})
