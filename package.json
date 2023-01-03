@@ -1,0 +1,9 @@
+{
+  "name": "deployment-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-client": "webpack -p",
+    "deploy": "script/deploy",
+    "heroku-token": 
