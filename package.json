@@ -11,4 +11,18 @@
     "start": "node server/index.js",
     "start-dev": "nodemon server/index.js --ignore public --ignore client & webpack -w",
     "test": "NODE_ENV=test mocha {server,client}/**/*.test.js --require @babel/polyfill --require @babel/register"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.1",
+    "express": "^4.16.3",
+    "faker": "^4.1.0",
+    "git-url-parse": "^11.1.2",
+    "nodemon": "^1.18.9",
+    "pg": "^8.3.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "sequelize": "^4.38.1",
+    "simple-git": "^1.
