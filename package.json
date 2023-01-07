@@ -6,4 +6,9 @@
   "scripts": {
     "build-client": "webpack -p",
     "deploy": "script/deploy",
-    "heroku-token": 
+    "heroku-token": "script/encrypt-heroku-auth-token.js",
+    "seed": "node script/seed.js",
+    "start": "node server/index.js",
+    "start-dev": "nodemon server/index.js --ignore public --ignore client & webpack -w",
+    "test": "NODE_ENV=test mocha {server,client}/**/*.test.js --require @babel/polyfill --require @babel/register"
+  }
