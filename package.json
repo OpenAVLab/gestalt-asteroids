@@ -25,4 +25,12 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "sequelize": "^4.38.1",
-    "simple-git": "^1.
+    "simple-git": "^1.122.0",
+    "yaml": "^1.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-f
