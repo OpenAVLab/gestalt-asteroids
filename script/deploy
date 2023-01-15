@@ -4,4 +4,14 @@
 
 # This bash script deploys your boilermaker application.
 
-# On the t
+# On the terminal you run individual
+# bash commands, and this file strings a bunch of commands together.
+
+# The first line of this file, or the `hashbang`, tells the system to
+# execute the text of this file as a bash program.
+
+# We want this entire script to exit if any single line fails.
+# So we set the `-e` flag.
+set -e
+
+# If our 
