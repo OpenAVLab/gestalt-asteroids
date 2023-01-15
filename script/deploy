@@ -21,4 +21,13 @@ set -e
 # Whether the deploy succeeds or fails, we'll clean up the deploy branch.
 
 function cleanup_at_exit {
-  # return to your ma
+  # return to your master branch
+  git checkout master
+
+  # remove the deploy branch
+  git branch -D deploy
+}
+trap cleanup_at_exit EXIT
+
+# checks out a new branch called "deploy". Note that the name "deploy" here isn't magical,
+# but it needs to match the name of the branch we specify when we push 
