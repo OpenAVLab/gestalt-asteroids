@@ -22,4 +22,15 @@ const successMessage = `Complete! Run \`git diff .travis.yml\` to check.`;
 const clean = () => {
   const externalFiles = [".tmp.key.pem", ".tmp.token.txt", ".tmp.token.enc"];
   externalFiles.forEach(file => {
-    if (
+    if (fs.existsSync(file)) fs.unlinkSync(file);
+  });
+};
+
+/* Get a specific git remote URL. */
+const getRemoteURL = (name, remotes) => {
+  try {
+    return remotes.filter(remote => remote.name === name)[0].refs.fetch;
+  } catch (err) {
+    console.log(
+      `It appears that the remote ${name} does not exist.`,
+      
