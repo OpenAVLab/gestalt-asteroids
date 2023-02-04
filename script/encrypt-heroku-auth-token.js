@@ -33,4 +33,18 @@ const getRemoteURL = (name, remotes) => {
   } catch (err) {
     console.log(
       `It appears that the remote ${name} does not exist.`,
-      
+      `Here is the full error:`,
+      err
+    );
+  }
+};
+
+/* Run a command and return its stdout. */
+const getOutputFromCommand = async (command, args) => {
+  const response = await new Promise((resolve, reject) => {
+    const process = spawn(command, args);
+
+    const stdout = [];
+    const stderr = [];
+
+    process.stdout.on("da
