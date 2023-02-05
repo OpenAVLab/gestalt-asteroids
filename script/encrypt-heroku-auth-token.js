@@ -47,4 +47,21 @@ const getOutputFromCommand = async (command, args) => {
     const stdout = [];
     const stderr = [];
 
-    process.stdout.on("da
+    process.stdout.on("data", data => {
+      stdout.push(data);
+    });
+
+    process.stderr.on("data", data => {
+      stderr.push(data);
+    });
+
+    process.on("close", code => {
+      if (code) throw new Error(reject(stderr));
+      resolve(stdout);
+    });
+  });
+  return response;
+};
+
+/* Use git remote URLs to get app identifiers. */
+c
