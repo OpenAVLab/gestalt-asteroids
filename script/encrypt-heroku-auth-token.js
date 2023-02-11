@@ -70,4 +70,18 @@ const getNamesFromGit = () =>
       if (err) throw new Error(reject(err));
       resolve({
         fullName: GitUrlParse(getRemoteURL("origin", res)).full_name,
-        appName: GitUrlParse(getRemoteURL("herok
+        appName: GitUrlParse(getRemoteURL("heroku", res)).name
+      });
+    })
+  );
+
+/* Use the openssl command to encrypt an authentication token. */
+const encryptHerokuToken = async () => {
+  await getOutputFromCommand("openssl", [
+    "rsautl",
+    "-encrypt",
+    "-pubin",
+    "-inkey",
+    ".tmp.key.pem",
+    "-in",
+    ".tmp.token.t
