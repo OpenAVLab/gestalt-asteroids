@@ -95,4 +95,17 @@ const updateTravisYAML = (app, key) => {
   const travis = fs.readFileSync(".travis.yml", "utf8");
   const doc = YAML.parseDocument(travis);
   if (doc.has("before_deploy")) {
-    return console.
+    return console.log(idempotenceMessage);
+  }
+  doc.set("before_deploy", ["rm -rf node_modules"]);
+  doc.set(
+    "deploy",
+    YAML.createNode({
+      skip_cleanup: true, //eslint-disable-line
+      provider: "heroku",
+      app: app,
+      api_key: { secure: key } //eslint-disable-line
+    })
+  );
+  doc.contents.items
+    .filter(item => ite
