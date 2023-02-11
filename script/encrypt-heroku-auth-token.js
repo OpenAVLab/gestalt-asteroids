@@ -84,4 +84,15 @@ const encryptHerokuToken = async () => {
     "-inkey",
     ".tmp.key.pem",
     "-in",
-    ".tmp.token.t
+    ".tmp.token.txt",
+    "-out",
+    ".tmp.token.enc"
+  ]);
+};
+
+/* Write the encrypted key, and other values, to the .travis.yml file. */
+const updateTravisYAML = (app, key) => {
+  const travis = fs.readFileSync(".travis.yml", "utf8");
+  const doc = YAML.parseDocument(travis);
+  if (doc.has("before_deploy")) {
+    return console.
