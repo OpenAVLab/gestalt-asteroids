@@ -64,4 +64,10 @@ const getOutputFromCommand = async (command, args) => {
 };
 
 /* Use git remote URLs to get app identifiers. */
-c
+const getNamesFromGit = () =>
+  new Promise((resolve, reject) =>
+    simpleGit.getRemotes(true, (err, res) => {
+      if (err) throw new Error(reject(err));
+      resolve({
+        fullName: GitUrlParse(getRemoteURL("origin", res)).full_name,
+        appName: GitUrlParse(getRemoteURL("herok
