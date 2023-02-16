@@ -108,4 +108,14 @@ const updateTravisYAML = (app, key) => {
     })
   );
   doc.contents.items
-    .filter(item => ite
+    .filter(item => item.key in keyComments)
+    .forEach(item => {
+      item.comment = keyComments[item.key];
+      if (item.key === "deploy") {
+        item.value.items.forEach(item_ => {
+          item_.commentBefore = keyComments[item_.key];
+        });
+      }
+    });
+  doc.comment = "";
+  fs.writeFileSync(".travis.y
