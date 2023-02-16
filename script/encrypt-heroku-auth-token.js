@@ -118,4 +118,14 @@ const updateTravisYAML = (app, key) => {
       }
     });
   doc.comment = "";
-  fs.writeFileSync(".travis.y
+  fs.writeFileSync(".travis.yml", doc.toString());
+  return true;
+};
+
+const main = async () => {
+  const verbose = process.argv.hasOwnProperty(2);
+  const { fullName, appName } = await getNamesFromGit();
+
+  /* Get Heroku authentication token from the Heroku CLI. */
+  const herokuTokenOut = await getOutputFromCommand("heroku", ["auth:token"]);
+  const heroku
