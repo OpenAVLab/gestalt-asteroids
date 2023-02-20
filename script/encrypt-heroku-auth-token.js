@@ -140,4 +140,11 @@ const main = async () => {
   if (verbose) console.log("Received Travis pubkey:\n", keyBuffer.toString());
 
   /* Write files for use with openssl */
-  fs.write
+  fs.writeFileSync(".tmp.key.pem", key);
+  fs.writeFileSync(".tmp.token.txt", herokuToken);
+
+  /* Encrypt the Heroku token and save it in the .tmp.token.enc file. */
+  await encryptHerokuToken();
+
+  /* Encode the encrypted data in base64. */
+  const keyBase64 = fs.readFileSync(".tmp.token.enc").toSt
