@@ -133,4 +133,11 @@ const main = async () => {
   if (verbose) console.log("Received Heroku token", herokuToken.toString());
 
   /* Download the repo's public key supplied by Travis. */
-  const travisURL = `https://api.travis-ci.
+  const travisURL = `https://api.travis-ci.org/repos/${fullName}/key`;
+  const travisResponse = await axios.get(travisURL);
+  const key = travisResponse.data.key;
+  const keyBuffer = Buffer.from(key, "utf-8");
+  if (verbose) console.log("Received Travis pubkey:\n", keyBuffer.toString());
+
+  /* Write files for use with openssl */
+  fs.write
