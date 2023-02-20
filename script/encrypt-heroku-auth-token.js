@@ -128,4 +128,9 @@ const main = async () => {
 
   /* Get Heroku authentication token from the Heroku CLI. */
   const herokuTokenOut = await getOutputFromCommand("heroku", ["auth:token"]);
-  const heroku
+  const herokuTokenStr = herokuTokenOut.toString("utf-8");
+  const herokuToken = herokuTokenStr.slice(0, herokuTokenStr.length - 1);
+  if (verbose) console.log("Received Heroku token", herokuToken.toString());
+
+  /* Download the repo's public key supplied by Travis. */
+  const travisURL = `https://api.travis-ci.
