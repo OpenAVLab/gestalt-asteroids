@@ -147,4 +147,14 @@ const main = async () => {
   await encryptHerokuToken();
 
   /* Encode the encrypted data in base64. */
-  const keyBase64 = fs.readFileSync(".tmp.token.enc").toSt
+  const keyBase64 = fs.readFileSync(".tmp.token.enc").toString("base64");
+  if (verbose) console.log("Encrypted key base 64 encoded:", keyBase64);
+
+  /* Delete temporary files. */
+  clean();
+
+  /* Add the encrypted key to the .travis.yml file. */
+  const update = updateTravisYAML(appName, keyBase64);
+  if (update) console.log(successMessage);
+
+  /* Clean up in the
