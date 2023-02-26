@@ -157,4 +157,16 @@ const main = async () => {
   const update = updateTravisYAML(appName, keyBase64);
   if (update) console.log(successMessage);
 
-  /* Clean up in the
+  /* Clean up in the case of unspecified errors. */
+  process.on("uncaughtException", () => {
+    clean();
+    if (verbose) console.log("Cleaned up on error!");
+    process.exit(1);
+  });
+
+  process.on("unhandledRejection", () => {
+    clean();
+    if (verbose) console.log("Cleaned up on error!");
+    process.exit(1);
+  });
+};
